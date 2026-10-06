@@ -1,0 +1,10 @@
+{
+  "name": "geschichte-bis-1500-zeitstrahl",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eigenständiges Zeitstrahl-Spiel zu Geschichte bis 1500",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build-static.cjs"
+  }
+}
