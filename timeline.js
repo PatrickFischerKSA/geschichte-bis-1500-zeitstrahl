@@ -26,10 +26,12 @@
     {id:'threshold',year:1500,date:'um 1500',title:'Der Kurs zieht seine Langzeitbilanz',module:'Module 1, 12 und 13'}
   ];
   const COUNTS={basis:4,vertieft:5,profi:6};
+  const MODULE_EVENT_IDS={1:'threshold',2:'tools',3:'cognitive',4:'foragers',5:'agriculture',6:'writing',7:'celts',8:'roman-republic',9:'cities',10:'islam',11:'medieval-order',12:'childrens-crusade',13:'columbus'};
   function shuffle(items,random=Math.random){const copy=items.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
   function createRound(level='basis',random=Math.random){const count=COUNTS[level]||COUNTS.basis;const picked=shuffle(EVENTS,random).slice(0,count);let order=shuffle(picked,random);const sorted=picked.slice().sort((a,b)=>a.year-b.year);if(order.every((event,index)=>event.id===sorted[index].id)){order=order.slice();[order[0],order[1]]=[order[1],order[0]];}return order;}
+  function createModuleRound(count=3,random=Math.random){const size=[3,6,13].includes(Number(count))?Number(count):3;const eventById=new Map(EVENTS.map(event=>[event.id,event]));const modules=shuffle(Object.keys(MODULE_EVENT_IDS).map(Number),random).slice(0,size);let order=shuffle(modules.map(module=>({...eventById.get(MODULE_EVENT_IDS[module]),module:`Modul ${module}`,selectedModule:module})),random);const sorted=order.slice().sort((a,b)=>a.year-b.year);if(order.every((event,index)=>event.id===sorted[index].id)){order=order.slice();[order[0],order[1]]=[order[1],order[0]];}return order;}
   function move(items,index,delta){const next=index+delta;if(index<0||index>=items.length||next<0||next>=items.length)return items.slice();const copy=items.slice();[copy[index],copy[next]]=[copy[next],copy[index]];return copy;}
   function evaluate(items){const correctOrder=items.slice().sort((a,b)=>a.year-b.year);const positionsCorrect=items.reduce((sum,event,index)=>sum+Number(event.id===correctOrder[index].id),0);return{correct:positionsCorrect===items.length,positionsCorrect,correctOrder};}
   function restore(raw){const value=raw&&typeof raw==='object'?raw:{};const played=Number.isInteger(value.played)&&value.played>=0?value.played:0;return{played,perfect:Number.isInteger(value.perfect)&&value.perfect>=0?Math.min(value.perfect,played):0,streak:Number.isInteger(value.streak)&&value.streak>=0?value.streak:0,best:Number.isInteger(value.best)&&value.best>=0?value.best:0};}
-  return{EVENTS,COUNTS,createRound,move,evaluate,restore};
+  return{EVENTS,COUNTS,MODULE_EVENT_IDS,createRound,createModuleRound,move,evaluate,restore};
 });

@@ -1,0 +1,48 @@
+/* Zusatzmodi: kompakte Niveau-Runden sowie Einheiten über 3, 6 oder 13 Module. */
+.mode-selectors {
+  display: grid;
+  gap: 13px;
+}
+.mode-section {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+.mode-section > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.module-section {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.module-picker {
+  display: flex;
+  gap: 7px;
+}
+.module-picker button {
+  min-width: 112px;
+  border-radius: 25px;
+  font-size: 13px;
+}
+.module-picker button[aria-pressed="true"] {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: white;
+}
+.game-head .stats {
+  max-width: 260px;
+}
+@media (max-width: 850px) {
+  .game-head { display: block; }
+  .game-head .stats { max-width: none; margin-top: 15px; text-align: left; }
+}
+@media (max-width: 760px) {
+  .mode-section { grid-template-columns: 1fr; }
+  .module-picker { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .module-picker button { min-width: 0; padding-inline: 7px; }
+}

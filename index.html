@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Zeitstrahl-Spiel mit historischen Datierungen aus Geschichte bis 1500.">
+  <meta name="description" content="Zeitstrahl-Spiel mit historischen Datierungen aus Geschichte bis 1500 – mit Niveau-Runden und Einheiten über 3, 6 oder 13 Module.">
   <title>Geschichte bis 1500 · Zeitstrahl</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="module-modes.css">
   <script defer src="timeline.js"></script>
   <script defer src="app.js"></script>
 </head>
@@ -23,10 +24,17 @@
     </section>
     <section class="game-shell" aria-labelledby="round-title">
       <div class="game-head">
-        <div class="level-picker" role="group" aria-label="Niveau wählen">
-          <button data-level="basis" aria-pressed="true">Basis <small>4 Ereignisse</small></button>
-          <button data-level="vertieft" aria-pressed="false">Vertieft <small>5 Ereignisse</small></button>
-          <button data-level="profi" aria-pressed="false">Profi <small>6 Ereignisse</small></button>
+        <div class="mode-selectors">
+          <div class="mode-section"><span>Niveau-Runden</span><div class="level-picker" role="group" aria-label="Niveau wählen">
+            <button data-mode="basis" aria-pressed="true">Basis <small>4 Ereignisse</small></button>
+            <button data-mode="vertieft" aria-pressed="false">Vertieft <small>5 Ereignisse</small></button>
+            <button data-mode="profi" aria-pressed="false">Profi <small>6 Ereignisse</small></button>
+          </div></div>
+          <div class="mode-section module-section"><span>Modulübergreifend</span><div class="module-picker" role="group" aria-label="Anzahl einbezogener Module wählen">
+            <button data-mode="modules-3" aria-pressed="false">3 Module</button>
+            <button data-mode="modules-6" aria-pressed="false">6 Module</button>
+            <button data-mode="modules-13" aria-pressed="false">13 Module</button>
+          </div></div>
         </div>
         <p id="stats" class="stats" aria-live="polite"></p>
       </div>
@@ -43,7 +51,7 @@
       <p id="save-status" role="status"></p>
     </details>
   </main>
-  <footer><span>Geschichte entsteht durch zeitliche Zusammenhänge.</span><span>23 Datierungen · 13 Module</span></footer>
+  <footer><span>Geschichte entsteht durch zeitliche Zusammenhänge.</span><span>23 Datierungen · Einzel- und modulübergreifende Runden</span></footer>
   <noscript>Bitte aktiviere JavaScript, um das Zeitstrahl-Spiel zu verwenden.</noscript>
 </body>
 </html>

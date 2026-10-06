@@ -4,6 +4,6 @@ const root = path.join(__dirname, '..');
 const dist = path.join(root, 'dist');
 fs.rmSync(dist, {recursive:true, force:true});
 fs.mkdirSync(dist, {recursive:true});
-for (const name of ['index.html','styles.css','timeline.js','app.js','assets']) {
+for (const name of ['index.html','styles.css','module-modes.css','timeline.js','app.js','assets']) {
   fs.cpSync(path.join(root,name), path.join(dist,name), {recursive:true});
 }
